@@ -48,7 +48,7 @@ public class MainActivity extends Activity {
 
         // Check if there is internet connectivity
         if (isInternetAvailable()) {
-            webUrl = "https://tux.software";
+            webUrl = "https://mobilewebpage.tux.software";
         } else {
             webUrl = "file:///android_asset/index.html";
         }
