@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <string name="app_name">hola</string>
+    <string name="app_name">polotest</string>
 <!--    <string name="web_hostname">kibana.lt.loc</string> Doesnt works-->
     <string name="web_url">https://mobilewebpage.tux.software</string>
 </resources>
