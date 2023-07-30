@@ -13,7 +13,7 @@ class MyWebViewClient extends WebViewClient {
     @Override
     public boolean shouldOverrideUrlLoading(WebView view, String url) {
         // YOUR HOSTNAME
-       String hostname = "file:///android_asset/index.html";
+       String hostname = "https://tux.software";
        // String hostname = Resources.getSystem().getString(R.string.web_hostname); // Doesnt works
 
         Uri uri = Uri.parse(url);
