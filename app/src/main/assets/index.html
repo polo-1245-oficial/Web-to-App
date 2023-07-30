@@ -1,11 +1,35 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-</head>
-<body style="font-family: monospace">
-    REPLACE THIS FILE WITH YOUR OWN INDEX.HTML
+<html>
+<body>
+    <div id="offline-message" style="display: none;">
+        <p>NO HAY</p>
+    </div>
+    <div id="online-content">
+        <p>HOLA</p>
+    </div>
+
+    <script>
+        function checkInternetConnection() {
+            return navigator.onLine;
+        }
+
+        function showContentBasedOnConnectivity() {
+            const offlineMessage = document.getElementById("offline-message");
+            const onlineContent = document.getElementById("online-content");
+
+            if (checkInternetConnection()) {
+                offlineMessage.style.display = "none";
+                onlineContent.style.display = "block";
+            } else {
+                offlineMessage.style.display = "block";
+                onlineContent.style.display = "none";
+            }
+        }
+
+        window.onload = showContentBasedOnConnectivity;
+
+        window.addEventListener("online", showContentBasedOnConnectivity);
+        window.addEventListener("offline", showContentBasedOnConnectivity);
+    </script>
 </body>
 </html>
