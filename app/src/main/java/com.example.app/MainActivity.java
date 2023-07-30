@@ -12,13 +12,14 @@ import android.net.http.SslError;
 public class MainActivity extends Activity {
 
     private WebView mWebView;
+    private String webUrl;
 
     @Override
     @SuppressLint("SetJavaScriptEnabled")
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        //setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE); // Enable Force Landscape mode
         setContentView(R.layout.activity_main);
+
         mWebView = findViewById(R.id.activity_main_webview);
         WebSettings webSettings = mWebView.getSettings();
         webSettings.setBuiltInZoomControls(false);
@@ -37,6 +38,7 @@ public class MainActivity extends Activity {
         webSettings.setSupportZoom(true);
         webSettings.setBuiltInZoomControls(true);
         webSettings.setDisplayZoomControls(false);
+
         mWebView.setWebViewClient(new MyWebViewClient() {
             @Override
             public void onReceivedSslError(final WebView view, final SslErrorHandler handler, final SslError error) {
@@ -44,17 +46,30 @@ public class MainActivity extends Activity {
             }
         });
 
-        // REMOTE RESOURCE
-        mWebView.loadUrl(getString(R.string.web_url));
-    }
+        // Check if there is internet connectivity
+        if (isInternetAvailable()) {
+            webUrl = "https://tux.software";
+        } else {
+            webUrl = "file:///android_asset/index.html";
+        }
 
+        // Load the appropriate URL
+        mWebView.loadUrl(webUrl);
+    }
 
     @Override
     public void onBackPressed() {
-        if(mWebView.canGoBack()) {
+        if (mWebView.canGoBack()) {
             mWebView.goBack();
         } else {
             super.onBackPressed();
         }
+    }
+
+    // Method to check internet connectivity
+    private boolean isInternetAvailable() {
+        // Implement your logic to check internet connectivity here
+        // Return true if internet is available, false otherwise
+        return true; // Change this with your actual logic to detect internet connectivity
     }
 }
